@@ -3,8 +3,7 @@ from urllib2 import urlopen
 
 BASE_URL = "https://www.jobhired.io/cat/engineering"
 
-def get_cityname(section_url):
-	html = urlopen(section_url).read()
-	soup = BeatifulSoup(html, "lxml")
-	cityname = soup.find("div", "container")
-	
+cityName = "San Francisco"
+
+soup = bs4.BeautifulSoup(BASE_URL, 'html.parser')
+results = soup.body.find_all(string=re.compile('.*{0}.*'.format(searched_word)), recursive=True)
