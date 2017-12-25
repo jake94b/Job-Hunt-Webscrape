@@ -1,10 +1,19 @@
-!#/usr/bin/env python
-from bs4 import BeautifulSoup
-from lxml import html
 import requests
+import bs4
+from bs4 import BeautifulSoup
+
+import pandas as pd
+import time
 
 
-webpage = request.get(https://www.jobhired.io/cat/engineering)
-webpage
+URL = "https://www.jobhired.io/cat/engineering"
+page = requests.get(URL)
+soup = BeautifulSoup(page.text, “html.parser”)
 
-soup = BeautifulSoup(webpage.content, html.parser)
+print(soup.prettify())
+
+def extract_job_title_from_result(soup): 
+  jobs = []
+  return(jobs)
+
+extract_job_title_from_result(soup)
