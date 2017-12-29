@@ -1,6 +1,7 @@
 import requests
 import bs4
 from bs4 import BeautifulSoup
+import re
 
 import pandas as pd
 import time
@@ -23,6 +24,19 @@ def extract_company_from_result(soup):
   companies = []
   for div in soup.find_all(name=”div”, attrs={“class”:”col-md-12”}):
     company = div.find_all(name=”span”, attrs={“class”:”company-res”})
+    if len(company) > 0:
+      for b in company:
+        companies.append(b.text.strip())
+    else:
+      sec_try = div.find_all(name=”span”, attrs={“class”:”result-link-source”})
+        for span in sec_try:
+          companies.append(span.text.strip())
+ return(companies)
+
+def extract_city_from_result(soup): 
+  city = []
+  for div in soup.find_all(name=”div”, attrs={“class”:”col-md-12”}):
+    city = div.find_all(name=”span”, attrs={“class”:”location-res”}, text=re.compile('^\s*San Francisco.*'))
     if len(company) > 0:
       for b in company:
         companies.append(b.text.strip())
